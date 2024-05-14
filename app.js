@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(rootDir, "views", "404page.html"));
+  res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
 });
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
