@@ -2,29 +2,17 @@ const http = require("http");
 const fs = require("fs");
 const express = require("express");
 const bodyParser = require("body-parser");
+const adminRouter = require("./router/adminRoutes");
+const shopRouter = require("./router/shopRoutes");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/add-product", (req, res, next) => {
-  res.send(`
-    <form action="/product" method="POST">
-      <input type="text" name="message">
-      <button type="submit">click</button>
-    </form>
-  `);
+app.use("/admin", adminRouter);
+app.use("/shop", shopRouter);
+app.use((req, res, next) => {
+  res.status(404).send(`<h1>Page not found</h1>`);
 });
-
-app.post("/product", (req, res, next) => {
-  console.log(req.body);
-  res.redirect("/");
-});
-
-app.use("/", (req, res, next) => {
-  console.log("hello from express");
-  res.send("Hello from Express!");
-});
-
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
