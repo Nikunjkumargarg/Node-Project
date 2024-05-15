@@ -6,6 +6,7 @@ html(lang="en")
     title #{docTitle}
     link(rel="stylesheet", href="/css/main.css")
     link(rel="stylesheet", href="/css/product.css")
+    link(rel="stylesheet", href="/css/forms.css")
   body 
     header.main-header 
       nav.main-header__nav
@@ -14,3 +15,20 @@ html(lang="en")
             a.active(href="/shop") Shop
           li.main-header__item-list   
             a.active(href="/admin/add-product") Add Product 
+    
+      main
+        .grid 
+          if prods.length > 0
+            each product in prods 
+              article.card.product-item
+                header.card__header
+                  h1.product__title #{product.title} 
+                .card__image 
+                  img(src="https://thumbs.dreamstime.com/b/stack-books-23026923.jpg", alt="A book")
+                .card__content
+                  h2.product__price $19.99
+                  p.product__description A very interesting book about so many even more evolution of humans fact !
+                .card__article 
+                  button .btn Add to cart 
+          else 
+            h2 No product
