@@ -17,7 +17,7 @@ app.use("/shop", shopRouter);
 app.use((req, res, next) => {
   // res.setHeader("Set-Cookie", "myCookie=hello");
   // res.cookie("name", "nikunj");
-  res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
+  res.status(404).render("404");
 });
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
