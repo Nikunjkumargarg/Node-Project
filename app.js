@@ -6,13 +6,12 @@ const adminRouter = require("./router/adminRoutes");
 const shopRouter = require("./router/shopRoutes");
 const path = require("path");
 const rootDir = require("./util/path");
-
 const app = express();
 app.set("view engine", "pug");
 app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/admin", adminRouter.adminRouter);
+app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
 app.use((req, res, next) => {
   // res.setHeader("Set-Cookie", "myCookie=hello");
