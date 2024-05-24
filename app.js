@@ -21,7 +21,6 @@ app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
 
 app.use(errorController.get404);
-//listening on port no. 3000
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
