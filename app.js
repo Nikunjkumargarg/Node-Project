@@ -1,26 +1,24 @@
-const http = require("http");
-const fs = require("fs");
-const express = require("express");
-const bodyParser = require("body-parser");
-const path = require("path");
-const rootDir = require("./util/path");
+const path = require('path');
 
-const adminRouter = require("./router/adminRoutes");
-const shopRouter = require("./router/shopRoutes");
-const errorController = require("./controllers/error");
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/error');
 
 const app = express();
 
-app.set("view engine", "pug");
-app.set("views", "views");
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("/admin", adminRouter);
-app.use("/shop", shopRouter);
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
 app.use(errorController.get404);
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+
+app.listen(3000);
